@@ -50,4 +50,3 @@ double* my_solver(int N, double *A, double *B) {
 
 	return BA;
 }
-

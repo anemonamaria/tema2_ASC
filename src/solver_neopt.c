@@ -61,7 +61,7 @@ double* my_solver(int N, double *A, double* B) {
 	// solving C = BxAxAt + BtxB
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
-			C[N * i + j] = BAAt[N * i + j] * BtB[N * i + j];
+			C[N * i + j] = BAAt[N * i + j] + BtB[N * i + j];
 		}
 	}
 
