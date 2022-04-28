@@ -19,7 +19,7 @@ double* my_solver(int N, double *A, double* B) {
 	// solving BxA
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
-			for (int k = 0; k < N; k++) {
+			for (int k = 0; k <= j; k++) {
 				BA[N * i + j] += B[N * i + k] * A[N * k + j];
 			}
 		}

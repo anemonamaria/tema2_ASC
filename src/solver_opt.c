@@ -40,7 +40,7 @@ double* my_solver(int N, double *A, double* B) {
 			register double *snd = &At[j * N];
 			register double *sndfst = fst;
 			register double sum = 0;
-			for (register int k = 0; k < N; k++) {
+			for (register int k = 0; k <= j; k++) {
 				sum += *sndfst * *snd;
 				sndfst++;
 				snd++;

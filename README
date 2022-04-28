@@ -1,0 +1,82 @@
+Moraru Anemona Maria
+333CC
+Tema 2 
+Arhitectura Sistemelor de Calcul
+Aprilie 2022
+
+C = B x A x At + Bt x B
+
+
+~~~~~~~Implementare solver_neopt.c~~~~~~~~~~
+
+Implementarea este una clasica si banala pentru inmultirea matricelor. Aceasta
+este formata din 4 for-uri in care calculez pe rand elementele matricelor 
+rezultate din inmultirea a cate doua matrice. 
+In aceasta rezolvare am ales sa sparg inmultirile de matrice si sa le efectuez in 
+pasi mici. In aceasta implementare s-a tinut cont si de faptul ca A este o
+matrice superior triunghiulara.
+
+
+~~~~~~~Implementare solver_blas.c~~~~~~~~~~
+
+In aceasta implementare am folosit doua functii specifice din biblioteca BLAS, 
+dtrmm si dgemm. Inainte de ale aplica am ales sa salvez temporar matricele date
+ca input in alte matrice pentru a nu le pierde in timpul calculelor folosind
+functiile BLAS.
+Am folosit functia cblas_dtrmm pentru a realiza inmultirea a doua matrice tinand
+cont de anumite aspecte ale tipului matricelor folosite.
+Functia cblas_dgemm am utilizat-o deoarece imi permitea sa realizez adunarea
+a doua matrice, aceasta avand formula: C = AxB + C.
+
+
+~~~~~~~Implementare solver_opt.c~~~~~~~~~~
+
+Aceasta implementare se bazeaza pe modelul utilizat si prezentat in cadrul 
+laboratorului 5. Am pornit de la varianta utilizata in solver_neopt.c si am
+introdus variabilele de tip register in care am retinut elemente din matrice.
+Pentru a putea efectua calculele am folosit pointeri de tip register pentru a
+putea accesa pe rand elementele din cele doua matrice.
+Aceasta implementare imi aduce un timp de rulare pentru N=1200 mai mic decat 9s
+si tine cont de faptul ca A este superior triunghiulara.
+
+
+
+
+~~~~~~~~~~~~~~~~my input~~~~~~~~~~~~~~~~~~~
+5
+400 123 out1
+800 456 out2
+1200 789 out3
+600 123 out4
+1000 456 out5
+
+
+
+---> results:
+
+neopt:
+
+N = 400   --- > T = 1.418098
+N = 600   --- > T = 5.003553
+N = 800   --- > T = 12.308917
+N = 1000   --- > T = 24.464359
+N = 1200   --- > T = 41.354038
+
+blas:
+
+N = 400   --- > T = 0.040457
+N = 600   --- > T = 0.129671
+N = 800   --- > T = 0.286209
+N = 1000   --- > T = 0.556979
+N = 1200   --- > T = 0.931372
+
+opt:
+
+N = 400   --- > T = 0.277594
+N = 600   --- > T = 0.926003
+N = 800   --- > T = 2.167470
+N = 1000   --- > T = 5.229858
+N = 1200   --- > T = 7.364075
+
+
+Varianta blas are cel mai bun timp.
